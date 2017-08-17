@@ -34,6 +34,7 @@ function createIssue() {
 }
 
 function showResults(json) {
+	
 	const src = document.getElementById("repo-template").innerHTML
 	const template = Handlebars.compile(src)
 	const repoList = template(json)
@@ -48,11 +49,15 @@ function forkRepo() {
   headers: {
     Authorization: 'token ' + getToken()
   }
-  }).then(res => res.json()).then(json => {showResults(json), usernameDiv.innerHTML = `${json.owner.login}`});
+  }).then(res => res.json()).then(json => {
+    showResults(json)
+    usernameDiv.innerHTML = `${json.owner.login}`
+  });
 
 }
 
 function getToken() {
+  // last used: 25a8396442248ebdcec957f8292e2db22ade2b57
 	// de432aac9488c86ff8f60fc0f38ac79a99277e6a
   //change to your token to run in browser, but set
   //back to '' before committing so all tests pass
